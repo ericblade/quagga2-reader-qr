@@ -1,0 +1,16 @@
+{
+  "name": "@ericblade/quagga2-reader-qr",
+  "version": "1.0.0",
+  "description": "Experimental plugin reader for Quagga2 to read QR codes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Blade",
+  "license": "MIT",
+  "dependencies": {
+    "@ericblade/quagga2": "^0.0.3",
+    "qrcode-reader": "^1.0.4",
+    "quagga": "^0.12.1"
+  }
+}
