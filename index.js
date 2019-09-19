@@ -1,10 +1,6 @@
 // import QrCode from 'qrcode-reader';
 const QrCode = require('qrcode-reader');
 
-const qr = new QrCode();
-
-qr.grayscale = (imageData) => imageData; // override the qr.grayscale function, not sure exactly why, but the original code did that.. is this necessary?
-
 const properties = {
     FORMAT: {
         value: 'qr_code',
@@ -23,6 +19,8 @@ QrCodeReader.prototype = Object.create(QrCodeReader.prototype, properties);
 QrCodeReader.prototype.constructor = QrCodeReader;
 
 QrCodeReader.prototype.decodeImage = function (inputImageWrapper) {
+    const qr = new QrCode();
+    qr.grayscale = (imageData) => imageData; // override the qr.grayscale function, not sure exactly why, but the original code did that.. is this necessary?
     qr.decode({
         width: inputImageWrapper.size.x,
         height: inputImageWrapper.size.y,
@@ -38,7 +36,10 @@ QrCodeReader.prototype.decodeImage = function (inputImageWrapper) {
         return null;
     }
     return {
-        code: result.result,
+        codeResult: {
+            code: result.result,
+            points: result.points, // TODO: should probably be translated to Quagga's "box" return values
+        },
     };
 }
 
