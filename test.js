@@ -2,7 +2,7 @@
 // import QrCodeReader from './index.js';
 
 const { default: Quagga } = require('@ericblade/quagga2');
-const QrCodeReader = require('./index');
+const { default: QrCodeReader } = require('.');
 
 Quagga.registerReader('qrcode', QrCodeReader);
 
