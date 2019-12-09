@@ -11,7 +11,7 @@
   "author": "Eric Blade",
   "license": "MIT",
   "dependencies": {
-    "@ericblade/quagga2": "^0.0.3",
+    "@ericblade/quagga2": "^0.0.7",
     "qrcode-reader": "^1.0.4",
     "quagga": "^0.12.1"
   },
