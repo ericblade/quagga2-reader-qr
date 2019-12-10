@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "sourceMap": true,
+        "module": "commonjs",
+        "target": "es5",
+        // "module": "ES6",
+        // "target": "ES6",
+        "lib": [
+            "dom",
+            "es6"
+        ],
+        "jsx": "react",
+        "experimentalDecorators": true
+    },
+    "compileOnSave": true
+}

@@ -3,19 +3,21 @@
   "version": "1.0.0",
   "description": "Experimental plugin reader for Quagga2 to read QR codes",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "browser": "lib/browser/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/.bin/webpack --config configs/webpack.config.js",
+    "build": "tsc -p tsconfig.node.json && tsc -p tsconfig.browser.json",
     "prepare": "npm run build"
   },
   "author": "Eric Blade",
   "license": "MIT",
   "dependencies": {
-    "@ericblade/quagga2": "^0.0.3",
-    "qrcode-reader": "^1.0.4",
-    "quagga": "^0.12.1"
+    "@ericblade/quagga2": "0.0.3",
+    "qrcode-reader": "^1.0.4"
   },
   "devDependencies": {
+    "cypress": "^3.7.0",
     "json-loader": "^0.5.7",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.3",
