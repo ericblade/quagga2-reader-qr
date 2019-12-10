@@ -13,8 +13,8 @@
   "author": "Eric Blade",
   "license": "MIT",
   "dependencies": {
-    "@ericblade/quagga2": "0.0.3",
-    "qrcode-reader": "^1.0.4"
+    "@ericblade/quagga2": "^0.0.7",
+    "jsqr": "^1.2.0"
   },
   "devDependencies": {
     "cypress": "^3.7.0",

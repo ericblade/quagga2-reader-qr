@@ -1,5 +1,5 @@
-import QrCode from 'qrcode-reader';
-console.warn('* quagga2-reader-qr loaded');
+import jsQR from 'jsqr';
+
 class QrCodeReader {
     FORMAT: {
         value: 'qr_code',
@@ -10,7 +10,6 @@ class QrCodeReader {
     supplements: any;
 
     constructor(config: {}, supplements: any) {
-        console.warn('* quagga2-reader-qr constructed');
         this._row = [];
         this.config = config || {};
         this.supplements = supplements;
@@ -21,33 +20,31 @@ class QrCodeReader {
         return this;
     }
 
-    decodeImage(inputImageWrapper: { size: { x: any; y: any; }; data: any; }) {
-        const qr = new QrCode();
-        qr.grayscale = (imageData: any) => imageData; // override the qr.grayscale function, not sure exactly why, but the original code did that.. is this necessary?
-        qr.decode({
-            width: inputImageWrapper.size.x,
-            height: inputImageWrapper.size.y,
-            data: inputImageWrapper.data
-        });
-        const error = qr.error;
-        if (error) {
-            console.error('* QrCodeReader error', error);
-            // qrcode-reader throws strings :(
-            if (error.startsWith("Couldn't find enough finder patterns:")) {
-                return null;
+    decodeImage(inputImageWrapper: { size: { x: any; y: any; }; data: any; get: any}) {
+        const { x: width, y: height } = inputImageWrapper.size;
+        const data = new Uint8ClampedArray(4 * inputImageWrapper.size.x * inputImageWrapper.size.y);
+        // TODO: perhaps quagga should provide a function to do this, particularly since it already
+        // has one that incorporates this
+        for(let y = 0; y < width; y++) {
+            for (let x = 0; x < height; x++) {
+                const loc = y * height + x;
+                const pix = inputImageWrapper.get(x, y);
+                data[loc * 4] = pix;
+                data[loc * 4 + 1] = pix;
+                data[loc * 4 + 2] = pix;
+                data[loc * 4 + 3] = 255;
             }
-            throw new Error(error);
         }
-        const result = qr.result;
-        if (result === null) {
-            return null;
-        }
+        const result = jsQR(data, inputImageWrapper.size.x, inputImageWrapper.size.y);
+        if (result === null) return null;
+        // TODO: translate result.location into same values as box/boxes from other readers?
+        console.warn('* returning from decodeImage');
         return {
             codeResult: {
-                code: result.result,
-                points: result.points, // TODO: should probably be translated to Quagga's "box" return values
+                code: data,
                 format: this.FORMAT.value,
             },
+            ...result,
         };
     }
 }
