@@ -1,12 +1,8 @@
 /// <reference types="cypress" />
-// import Quagga from '@ericblade/quagga2';
 const Quagga = require('@ericblade/quagga2');
 const { default: QrCodeReader } = require('../../..');
 
 Quagga.registerReader('qrcode', QrCodeReader);
-console.warn('* quagga=', QrCodeReader);
-
-// import QrCodeReader from '../../../lib/browser/index.js';
 
 const config = {
     numOfWorkers: 0,
@@ -24,20 +20,18 @@ const config = {
     },
 };
 
-describe('decodeSingle decodes a code_128 from a given image', () => {
-    it('works', () => {
-        const data = {};
+describe('After registering QrCodeReader, decodeSingle functions correctly', () => {
+    it('internal code128 reader still functions', () => {
         cy.fixture('code128.png').then(fixture => {
-            Quagga.decodeSingle({
-                ...config,
-                src: `data:image/png;base64,${fixture}`
-            }, (result: any) => {
-                // console.warn('**** result=', result);
-                data.result = result;
+            return new Promise((resolve, reject) => {
+                Quagga.decodeSingle({
+                    ...config,
+                    src: `data:image/png;base64,${fixture}`,
+                }, (result: any) => {
+                    resolve(result);
+                });
             });
-        });
-        cy.wrap(data)
-        .should('have.property', 'result')
+        })
         .should('have.all.keys', [
             'angle', 'box', 'boxes', 'codeResult', 'line', 'pattern', 'threshold',
         ])
@@ -45,22 +39,40 @@ describe('decodeSingle decodes a code_128 from a given image', () => {
         .should('have.property', 'code')
         .should('equal', 'Code 128');
     });
-});
-
-describe('decodeSingle decodes a QR code from a given image', () => {
-    it.only('works', () => {
+    it('QrCodeReader returns correct results from valid QR code image', () => {
         cy.fixture('qrcode.png').then(fixture => {
             return new Promise((resolve, reject) => {
                 Quagga.decodeSingle({
                     ...config,
                     src: `data:image/png;base64,${fixture}`,
                 }, (result: any) => {
-                    console.warn('**** result=', result);
-                    resolve(cy.wrap(result));
+                    // console.warn('**** result=', result);
+                    resolve(result);
                 });
             });
+        })
+        .should('have.all.keys', [
+            'binaryData', 'chunks', 'codeResult', 'data', 'location',
+        ])
+        .should('have.property', 'codeResult')
+        .should('have.all.keys', ['code', 'format'])
+        .should('deep.equal', {
+            code: 'https://qrs.ly/rbalywt',
+            format: 'qr_code'
         });
-        // TODO: still need to figure out how to handle this test properly -- cypress is freezing
-        // and it doesn't seem to be the fault of THIS library.
+    });
+    it('decodeSingle returns null on junk image with no barcode/qrcode', () => {
+        cy.fixture('junk.jpg').then(fixture => {
+            return new Promise((resolve, reject) => {
+                Quagga.decodeSingle({
+                    ...config,
+                    src: `data:image/jpg;base64,${fixture}`,
+                }, (result: any) => {
+                    console.warn('**** result=', result);
+                    resolve(result);
+                });
+            });
+        })
+        .should('equal', null);
     });
 });

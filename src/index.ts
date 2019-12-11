@@ -41,7 +41,7 @@ class QrCodeReader {
         console.warn('* returning from decodeImage');
         return {
             codeResult: {
-                code: data,
+                code: result.data,
                 format: this.FORMAT.value,
             },
             ...result,
