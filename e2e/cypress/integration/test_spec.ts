@@ -69,10 +69,19 @@ describe('After registering QrCodeReader, decodeSingle functions correctly', () 
                     src: `data:image/jpg;base64,${fixture}`,
                 }, (result: any) => {
                     console.warn('**** result=', result);
-                    resolve(result);
+                    resolve(!result ? null : result);
                 });
             });
         })
         .should('equal', null);
+    });
+});
+
+describe('served application can use decodeSingle to decode code-128 and qr-code', () => {
+    it('code128', () => {
+        cy.visit('localhost:3000').get('.barcode-result').contains('Code 128');
+    });
+    it('qrcode', () => {
+        cy.visit('localhost:3000').get('.qrcode-result').contains('https://qrs.ly/rbalywt');
     });
 });

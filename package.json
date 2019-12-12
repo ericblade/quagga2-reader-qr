@@ -6,22 +6,35 @@
   "types": "lib/index.d.ts",
   "browser": "lib/browser/index.js",
   "scripts": {
+    "build:test-app": "npx cross-os build:test-app",
+    "run:test-server": "npx cross-os run:test-server",
+    "cy:open": "cd e2e && cypress open",
+    "e2e": "start-server-and-test run:test-server http-get://localhost:3000 cy:open",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p tsconfig.node.json && tsc -p tsconfig.browser.json",
     "prepare": "npm run build"
   },
+  "cross-os": {
+    "build:test-app": {
+      "win32": "npm run build && npm link && cd example && npm install && npm link @ericblade/quagga2-reader-qr"
+    },
+    "run:test-server": {
+      "win32": "cd example && npx cross-env BROWSER=none npm run start"
+    }
+  },
   "author": "Eric Blade",
   "license": "MIT",
   "dependencies": {
-    "@ericblade/quagga2": "^0.0.7",
     "jsqr": "^1.2.0"
   },
   "devDependencies": {
+    "@ericblade/quagga2": "^0.0.8",
     "cypress": "^3.7.0",
     "json-loader": "^0.5.7",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.3",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "start-server-and-test": "^1.10.6"
   }
 }

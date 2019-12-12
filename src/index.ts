@@ -20,25 +20,13 @@ class QrCodeReader {
         return this;
     }
 
-    decodeImage(inputImageWrapper: { size: { x: any; y: any; }; data: any; get: any}) {
+    decodeImage(inputImageWrapper: { size: { x: any; y: any; }; data: any; get: any; getAsRGBA: any }) {
         const { x: width, y: height } = inputImageWrapper.size;
-        const data = new Uint8ClampedArray(4 * inputImageWrapper.size.x * inputImageWrapper.size.y);
-        // TODO: perhaps quagga should provide a function to do this, particularly since it already
-        // has one that incorporates this
-        for(let y = 0; y < width; y++) {
-            for (let x = 0; x < height; x++) {
-                const loc = y * height + x;
-                const pix = inputImageWrapper.get(x, y);
-                data[loc * 4] = pix;
-                data[loc * 4 + 1] = pix;
-                data[loc * 4 + 2] = pix;
-                data[loc * 4 + 3] = 255;
-            }
-        }
+        const data = inputImageWrapper.getAsRGBA();
         const result = jsQR(data, inputImageWrapper.size.x, inputImageWrapper.size.y);
-        if (result === null) return null;
+        console.warn('**** jsQR result=', result);
+        if (!result) return null;
         // TODO: translate result.location into same values as box/boxes from other readers?
-        console.warn('* returning from decodeImage');
         return {
             codeResult: {
                 code: result.data,
