@@ -1,4 +1,5 @@
 import jsQR from 'jsqr';
+import { ImageWrapper } from '../../quaggajs/type-definitions/quagga';
 
 class QrCodeReader {
     FORMAT: {
@@ -20,8 +21,7 @@ class QrCodeReader {
         return this;
     }
 
-    decodeImage(inputImageWrapper: { size: { x: any; y: any; }; data: any; get: any; getAsRGBA: any }) {
-        const { x: width, y: height } = inputImageWrapper.size;
+    decodeImage(inputImageWrapper: ImageWrapper) {
         const data = inputImageWrapper.getAsRGBA();
         const result = jsQR(data, inputImageWrapper.size.x, inputImageWrapper.size.y);
         console.warn('**** jsQR result=', result);

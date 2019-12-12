@@ -9,14 +9,14 @@
     "build:test-app": "npx cross-os build:test-app",
     "run:test-server": "npx cross-os run:test-server",
     "cy:open": "cd e2e && cypress open",
-    "e2e": "start-server-and-test run:test-server http-get://localhost:3000 cy:open",
+    "e2e": "npm run build:test-app && start-server-and-test run:test-server http-get://localhost:3000 cy:open",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p tsconfig.node.json && tsc -p tsconfig.browser.json",
     "prepare": "npm run build"
   },
   "cross-os": {
     "build:test-app": {
-      "win32": "npm run build && npm link && cd example && npm install && npm link @ericblade/quagga2-reader-qr"
+      "win32": "npm run build && npm link && cd example && npm install && npm link @ericblade/quagga2-reader-qr && cd .. && npm install"
     },
     "run:test-server": {
       "win32": "cd example && npx cross-env BROWSER=none npm run start"

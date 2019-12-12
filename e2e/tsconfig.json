@@ -11,6 +11,7 @@
             "es6"
         ],
         "jsx": "react",
+        "types": [ "cypress", "@ericblade/quagga2", "node" ],
         "experimentalDecorators": true
     },
     "compileOnSave": true
