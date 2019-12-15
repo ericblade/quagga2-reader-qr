@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Quagga from '@ericblade/quagga2';
+import Quagga, { QuaggaJSConfigObject } from '@ericblade/quagga2';
 import QrCodeReader from '@ericblade/quagga2-reader-qr';
 import './App.css';
 import code128test from './code128.png';
@@ -7,7 +7,7 @@ import qrcodetest from './qrcode.png';
 
 Quagga.registerReader('qrcode', QrCodeReader);
 
-const qconfig = {
+const qconfig:QuaggaJSConfigObject = {
   numOfWorkers: 0,
   inputStream: {
     size: 800,
@@ -24,8 +24,8 @@ const qconfig = {
 };
 
 function App() {
-  const [barcode, setBarcode] = useState(null);
-  const [qrcode, setQrcode] = useState(null);
+  const [barcode, setBarcode] = useState('');
+  const [qrcode, setQrcode] = useState('');
 
   useEffect(() => {
   // simultaneous decoding is BROKEN, see https://github.com/ericblade/quagga2/issues/5
