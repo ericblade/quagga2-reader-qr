@@ -27,36 +27,19 @@ function App() {
   const [barcode, setBarcode] = useState(null);
   const [qrcode, setQrcode] = useState(null);
 
+  useEffect(() => {
   // simultaneous decoding is BROKEN, see https://github.com/ericblade/quagga2/issues/5
-  // useEffect(() => {
-  //   Quagga.decodeSingle({
-  //     ...qconfig,
-  //     src: code128test,
-  //   }, (result) => {
-  //     console.warn('* result return 1', result.codeResult.code);
-  //     setBarcode(result.codeResult.code);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   Quagga.decodeSingle({
-  //     ...qconfig,
-  //     src: qrcodetest,
-  //   }, (result) => {
-  //     console.warn('* result return 2', result.codeResult.code);
-  //     setQrcode(result.codeResult.code);
-  //   });
-  // }, []);
-
-  useEffect(async () => {
-    const [bc, qr] = await Promise.all([
-      Quagga.decodeSingle({ ...qconfig, src: code128test }),
-      Quagga.decodeSingle({ ...qconfig, src: qrcodetest }),
-    ]);
-    // const bc = await Quagga.decodeSingle({ ...qconfig, src: code128test });
-    // const qr = await Quagga.decodeSingle({ ...qconfig, src: qrcodetest });
-    setBarcode(bc.codeResult.code);
-    setQrcode(qr.codeResult.code);
+    // const [bc, qr] = await Promise.all([
+    //   Quagga.decodeSingle({ ...qconfig, src: code128test }),
+    //   Quagga.decodeSingle({ ...qconfig, src: qrcodetest }),
+    // ]);
+    async function decode() {
+      const bc = await Quagga.decodeSingle({ ...qconfig, src: code128test });
+      const qr = await Quagga.decodeSingle({ ...qconfig, src: qrcodetest });
+      setBarcode(bc.codeResult.code);
+      setQrcode(qr.codeResult.code);
+    }
+    decode();
   }, []);
 
   return (
