@@ -2,6 +2,8 @@ import jsQR from 'jsqr';
 import { ImageWrapper } from '@ericblade/quagga2';
 
 class QrCodeReader {
+    // TODO: is FORMAT, _row, config, supplements actually necessary? check inside quagga to see if
+    // they are used for anything? or if they are just customary.
     FORMAT: {
         value: 'qr_code',
         writeable: false,
@@ -24,9 +26,7 @@ class QrCodeReader {
     decodeImage(inputImageWrapper: ImageWrapper) {
         const data = inputImageWrapper.getAsRGBA();
         const result = jsQR(data, inputImageWrapper.size.x, inputImageWrapper.size.y);
-        console.warn('**** jsQR result=', result);
         if (result === null) {
-            console.warn('**** returning null');
             return null;
         }
         // TODO: translate result.location into same values as box/boxes from other readers?
