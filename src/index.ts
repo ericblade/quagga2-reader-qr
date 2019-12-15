@@ -25,7 +25,10 @@ class QrCodeReader {
         const data = inputImageWrapper.getAsRGBA();
         const result = jsQR(data, inputImageWrapper.size.x, inputImageWrapper.size.y);
         console.warn('**** jsQR result=', result);
-        if (!result) return null;
+        if (result === null) {
+            console.warn('**** returning null');
+            return null;
+        }
         // TODO: translate result.location into same values as box/boxes from other readers?
         return {
             codeResult: {

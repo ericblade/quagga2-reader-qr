@@ -48,19 +48,15 @@ function App() {
   //   });
   // }, []);
 
-  useEffect(() => {
-    Quagga.decodeSingle({
-      ...qconfig,
-      src: code128test,
-    }, (result) => {
-      setBarcode(result.codeResult.code);
-      Quagga.decodeSingle({
-        ...qconfig,
-        src: qrcodetest,
-      }, (result) => {
-        setQrcode(result.codeResult.code);
-      });
-    });
+  useEffect(async () => {
+    const [bc, qr] = await Promise.all([
+      Quagga.decodeSingle({ ...qconfig, src: code128test }),
+      Quagga.decodeSingle({ ...qconfig, src: qrcodetest }),
+    ]);
+    // const bc = await Quagga.decodeSingle({ ...qconfig, src: code128test });
+    // const qr = await Quagga.decodeSingle({ ...qconfig, src: qrcodetest });
+    setBarcode(bc.codeResult.code);
+    setQrcode(qr.codeResult.code);
   }, []);
 
   return (

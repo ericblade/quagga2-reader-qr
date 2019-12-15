@@ -5,7 +5,7 @@ import { QuaggaJSStatic } from '@ericblade/quagga2';
 // and simply importing results in Quagga === undefined. :(
 
 const Quagga: QuaggaJSStatic = require('@ericblade/quagga2');
-const { default: QrCodeReader } = require('../../..');
+import QrCodeReader from '../../../lib/browser/index';
 
 Quagga.registerReader('qrcode', QrCodeReader);
 
@@ -28,13 +28,9 @@ const config = {
 describe('After registering QrCodeReader, decodeSingle functions correctly', () => {
     it('internal code128 reader still functions', () => {
         cy.fixture('code128.png').then(fixture => {
-            return new Promise((resolve, reject) => {
-                Quagga.decodeSingle({
-                    ...config,
-                    src: `data:image/png;base64,${fixture}`,
-                }, (result: any) => {
-                    resolve(result);
-                });
+            return Quagga.decodeSingle({
+                ...config,
+                src: `data:image/png;base64,${fixture}`,
             });
         })
         .should('have.all.keys', [
@@ -46,14 +42,9 @@ describe('After registering QrCodeReader, decodeSingle functions correctly', () 
     });
     it('QrCodeReader returns correct results from valid QR code image', () => {
         cy.fixture('qrcode.png').then(fixture => {
-            return new Promise((resolve, reject) => {
-                Quagga.decodeSingle({
-                    ...config,
-                    src: `data:image/png;base64,${fixture}`,
-                }, (result: any) => {
-                    // console.warn('**** result=', result);
-                    resolve(result);
-                });
+            return Quagga.decodeSingle({
+                ...config,
+                src: `data:image/png;base64,${fixture}`,
             });
         })
         .should('have.all.keys', [
@@ -66,16 +57,18 @@ describe('After registering QrCodeReader, decodeSingle functions correctly', () 
             format: 'qr_code'
         });
     });
-    it('decodeSingle returns null on junk image with no barcode/qrcode', () => {
+    it('decodeSingle returns undefined on junk image with no barcode/qrcode', () => {
         cy.fixture('junk.jpg').then(fixture => {
-            return new Promise((resolve, reject) => {
-                Quagga.decodeSingle({
-                    ...config,
-                    src: `data:image/jpg;base64,${fixture}`,
-                }, (result: any) => {
-                    console.warn('**** result=', result);
-                    resolve(!result ? null : result);
-                });
+            return Quagga.decodeSingle({
+                ...config,
+                src: `data:image/jpg;base64,${fixture}`,
+            }).then(res => {
+                // trap undefined and return null instead, because undefined return from here
+                // tells cypress to use 'fixture' instead of 'undefined'
+                if (res === undefined) {
+                    return null;
+                }
+                return res;
             });
         })
         .should('equal', null);
@@ -90,8 +83,6 @@ describe('served application can use decodeSingle to decode code-128 and qr-code
         cy.visit('localhost:3000').get('.qrcode-result').contains('https://qrs.ly/rbalywt');
     });
 });
-
-console.warn('* ', Quagga.CameraAccess);
 
 describe('CameraAccess', () => {
     describe('enumerateVideoDevices', () => {

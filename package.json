@@ -28,7 +28,7 @@
     "jsqr": "^1.2.0"
   },
   "devDependencies": {
-    "@ericblade/quagga2": "^0.0.9",
+    "@ericblade/quagga2": "^0.0.10",
     "cypress": "^3.7.0",
     "json-loader": "^0.5.7",
     "ts-loader": "^6.2.1",

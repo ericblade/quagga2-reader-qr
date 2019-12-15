@@ -3,12 +3,14 @@
         "strict": true,
         "sourceMap": true,
         "module": "commonjs",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
         "target": "es5",
         // "module": "ES6",
         // "target": "ES6",
         "lib": [
             "dom",
-            "es6"
+            "esnext"
         ],
         "jsx": "react",
         "types": [ "cypress", "@ericblade/quagga2", "node" ],
