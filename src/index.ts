@@ -1,5 +1,5 @@
 import jsQR from 'jsqr';
-import { ImageWrapper } from '../../quaggajs/type-definitions/quagga';
+import { ImageWrapper } from '@ericblade/quagga2';
 
 class QrCodeReader {
     FORMAT: {
