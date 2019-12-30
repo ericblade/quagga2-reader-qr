@@ -29,13 +29,13 @@ function App() {
 
   useEffect(() => {
   // simultaneous decoding is BROKEN, see https://github.com/ericblade/quagga2/issues/5
-    // const [bc, qr] = await Promise.all([
-    //   Quagga.decodeSingle({ ...qconfig, src: code128test }),
-    //   Quagga.decodeSingle({ ...qconfig, src: qrcodetest }),
-    // ]);
     async function decode() {
-      const bc = await Quagga.decodeSingle({ ...qconfig, src: code128test });
-      const qr = await Quagga.decodeSingle({ ...qconfig, src: qrcodetest });
+      const [bc, qr] = await Promise.all([
+        Quagga.decodeSingle({ ...qconfig, src: code128test }),
+        Quagga.decodeSingle({ ...qconfig, src: qrcodetest }),
+      ]);
+      //   const bc = await Quagga.decodeSingle({ ...qconfig, src: code128test });
+      // const qr = await Quagga.decodeSingle({ ...qconfig, src: qrcodetest });
       setBarcode(bc.codeResult.code);
       setQrcode(qr.codeResult.code);
     }

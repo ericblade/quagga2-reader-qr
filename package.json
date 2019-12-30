@@ -28,13 +28,13 @@
     "jsqr": "^1.2.0"
   },
   "devDependencies": {
-    "@ericblade/quagga2": "^0.0.10",
-    "cypress": "^3.7.0",
+    "@ericblade/quagga2": "^0.0.12",
+    "cypress": "^3.8.1",
     "json-loader": "^0.5.7",
+    "start-server-and-test": "^1.10.6",
     "ts-loader": "^6.2.1",
-    "typescript": "^3.7.3",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "start-server-and-test": "^1.10.6"
+    "typescript": "^3.7.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   }
 }
