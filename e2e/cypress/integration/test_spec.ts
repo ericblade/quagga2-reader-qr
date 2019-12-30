@@ -1,10 +1,12 @@
-import { QuaggaJSStatic } from '@ericblade/quagga2';
+// import { QuaggaJSStatic } from '@ericblade/quagga2';
 
 // TODO: I have no idea why I have to import the type from quagga2, then require the package,
 // but it doesn't work correctly in any other way.  Simply requiring does not get typescript types,
 // and simply importing results in Quagga === undefined. :(
 
-const Quagga: QuaggaJSStatic = require('@ericblade/quagga2');
+// const Quagga: QuaggaJSStatic = require('@ericblade/quagga2');
+import { default as Quagga } from '@ericblade/quagga2';
+
 import QrCodeReader from '../../../lib/browser/index';
 
 Quagga.registerReader('qrcode', QrCodeReader);
