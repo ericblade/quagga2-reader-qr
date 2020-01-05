@@ -38,6 +38,12 @@ class QrCodeReader {
             ...result,
         };
     }
+
+    decodePattern(pattern: any) {
+        // STUB, this is probably meaningless to QR, but needs to be implemented for Quagga, in case
+        // it thinks there's a potential barcode in the image
+        return null;
+    }
 }
 
 export default QrCodeReader;
