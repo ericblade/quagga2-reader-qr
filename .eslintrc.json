@@ -1,0 +1,14 @@
+{
+    "extends": "airbnb-typescript",
+    "parserOptions": {
+        "ecmaVersion": 2019
+    },
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "linebreak-style": "off",
+        "@typescript-eslint/indent": ["error", 4]
+    }
+}

@@ -1,4 +1,7 @@
+/* eslint-disable no-underscore-dangle */
+// Quagga may have a dependency on the name of the property _row
 import jsQR from 'jsqr';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ImageWrapper } from '@ericblade/quagga2';
 
 class QrCodeReader {
@@ -8,8 +11,11 @@ class QrCodeReader {
         value: 'qr_code',
         writeable: false,
     };
+
     _row: [];
+
     config: {};
+
     supplements: any;
 
     constructor(config: {}, supplements: any) {
@@ -39,6 +45,7 @@ class QrCodeReader {
         };
     }
 
+    // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
     decodePattern(pattern: any) {
         // STUB, this is probably meaningless to QR, but needs to be implemented for Quagga, in case
         // it thinks there's a potential barcode in the image
