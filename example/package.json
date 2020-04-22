@@ -6,7 +6,7 @@
     "@ericblade/quagga2": "^0.0.19",
     "@ericblade/quagga2-reader-qr": "git+https://github.com/ericblade/quagga2-reader-qr.git",
     "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^10.0.1",
+    "@testing-library/react": "^10.0.2",
     "@testing-library/user-event": "^10.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
