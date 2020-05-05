@@ -1,7 +1,10 @@
 {
   "name": "@ericblade/quagga2-reader-qr",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Experimental plugin reader for Quagga2 to read QR codes",
+  "peerDependencies": {
+    "@ericblade/quagga2": ">= 0.0.5"
+  },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "browser": "lib/browser/index.js",
@@ -16,7 +19,7 @@
   },
   "cross-os": {
     "build:test-app": {
-      "win32": "npm run build && npm link && cd example && npm install && npm link @ericblade/quagga2-reader-qr && cd .. && npm install"
+      "win32": "npm run build && npm link && cd example && npm install && npm link @ericblade/quagga2-reader-qr && npm link @ericblade/quagga2 && cd .. && npm install"
     },
     "run:test-server": {
       "win32": "cd example && npx cross-env BROWSER=none npm run start"
@@ -28,7 +31,7 @@
     "jsqr": "^1.2.0"
   },
   "devDependencies": {
-    "@ericblade/quagga2": "^0.0.18",
+    "@ericblade/quagga2": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
     "cypress": "^4.1.0",
     "eslint": "^6.8.0",
