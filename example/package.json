@@ -10,13 +10,16 @@
     "@testing-library/user-event": "^10.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "snyk": "^1.319.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +38,6 @@
   },
   "devDependencies": {
     "typescript": "^3.8.3"
-  }
+  },
+  "snyk": true
 }
