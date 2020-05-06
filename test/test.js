@@ -13,7 +13,7 @@ const config = {
         singleChannel: false,
     },
     decoder: {
-        readers: ['code_128_reader', 'qrcode'],
+        readers: ['code_128_reader', 'qrcode']
     },
     locate: true,
     locator: {
@@ -24,11 +24,11 @@ const config = {
 
 config.src = './qrcode.png';
 
-/* eslint-disable no-console */
-Quagga.decodeSingle(config, (firstDecodeResult) => {
-    console.warn('* qrcode test result=', firstDecodeResult);
-    config.src = './code128.png';
-    Quagga.decodeSingle(config, (secondDecodeResult) => {
-        console.warn('* code128 test result=', secondDecodeResult);
-    });
+Quagga.decodeSingle(config, (result) => {
+    console.warn('* qrcode test result=', result);
+});
+
+config.src = './code128.png';
+Quagga.decodeSingle(config, (result) => {
+    console.warn('* code128 test result=', result);
 });
