@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ericblade/quagga2": "^1.2.1",
+    "@ericblade/quagga2": "^1.2.2",
     "@ericblade/quagga2-reader-qr": "git+https://github.com/ericblade/quagga2-reader-qr.git",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^10.0.4",
