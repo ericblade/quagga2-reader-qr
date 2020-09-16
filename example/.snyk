@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.14.1
+version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -1750,3 +1750,31 @@ patch:
         patched: '2020-05-06T06:07:17.132Z'
     - react-scripts > jest > jest-cli > @jest/core > @jest/reporters > jest-runtime > jest-config > @jest/test-sequencer > jest-runner > jest-jasmine2 > @jest/environment > @jest/transform > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
         patched: '2020-05-06T06:07:17.132Z'
+    - '@ericblade/quagga2 > snyk > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > snyk-cpp-plugin > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > snyk-go-plugin > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > snyk-gradle-plugin > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > snyk-docker-plugin > snyk-nodejs-lockfile-parser > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > snyk-mvn-plugin > @snyk/java-call-graph-builder > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > snyk-php-plugin > @snyk/cli-interface > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > snyk-gradle-plugin > @snyk/cli-interface > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > snyk-mvn-plugin > @snyk/cli-interface > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > snyk-nodejs-lockfile-parser > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
+    - '@ericblade/quagga2 > snyk > snyk-go-plugin > graphlib > lodash':
+        patched: '2020-09-16T08:22:38.391Z'
