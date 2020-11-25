@@ -1842,3 +1842,11 @@ patch:
         patched: '2020-10-20T09:10:17.932Z'
     - '@ericblade/quagga2 > snyk > snyk-python-plugin > @snyk/cli-interface > @snyk/dep-graph > graphlib > lodash':
         patched: '2020-10-20T09:10:17.932Z'
+    - snyk > snyk-python-plugin > snyk-poetry-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-11-25T06:51:29.042Z'
+    - snyk > snyk-python-plugin > snyk-poetry-lockfile-parser > @snyk/cli-interface > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-11-25T06:51:29.042Z'
+    - '@ericblade/quagga2 > snyk > snyk-python-plugin > snyk-poetry-lockfile-parser > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-11-25T06:51:29.042Z'
+    - '@ericblade/quagga2 > snyk > snyk-python-plugin > snyk-poetry-lockfile-parser > @snyk/cli-interface > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-11-25T06:51:29.042Z'
