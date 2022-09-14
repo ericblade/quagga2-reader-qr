@@ -22,11 +22,13 @@ const config = {
 
 describe('After registering QrCodeReader, decodeSingle functions correctly', () => {
     it('internal code128 reader still functions', () => {
-        cy.fixture('code128.png').then(fixture => {
-            return Quagga.decodeSingle({
+        cy.fixture('code128.png').then(async fixture => {
+            const ret = await Quagga.decodeSingle({
                 ...config,
                 src: `data:image/png;base64,${fixture}`,
             });
+            console.warn('* ret = ', ret);
+            return ret;
         })
         .should('have.all.keys', [
             'angle', 'box', 'boxes', 'codeResult', 'line', 'pattern', 'threshold',
@@ -36,14 +38,16 @@ describe('After registering QrCodeReader, decodeSingle functions correctly', () 
         .should('equal', 'Code 128');
     });
     it('QrCodeReader returns correct results from valid QR code image', () => {
-        cy.fixture('qrcode.png').then(fixture => {
-            return Quagga.decodeSingle({
+        cy.fixture('qrcode.png').then(async fixture => {
+            const ret = await Quagga.decodeSingle({
                 ...config,
                 src: `data:image/png;base64,${fixture}`,
             });
+            console.warn('* ret=', ret);
+            return ret;
         })
         .should('have.all.keys', [
-            'binaryData', 'chunks', 'codeResult', 'data', 'location',
+            'binaryData', 'chunks', 'codeResult', 'data', 'location', 'version'
         ])
         .should('have.property', 'codeResult')
         .should('have.all.keys', ['code', 'format'])
