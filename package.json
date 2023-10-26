@@ -32,7 +32,7 @@
     "jsqr": "^1.4.0"
   },
   "devDependencies": {
-    "@ericblade/quagga2": "^1.7.0",
+    "@ericblade/quagga2": "^1.8.2",
     "@types/react": "^17.0.19",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "cypress": "^10.0.0",
