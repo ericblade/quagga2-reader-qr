@@ -90,6 +90,3 @@ public
 
 # DynamoDB Local files
 .dynamodb/
-
-# Built library shouldn't be committed
-lib/
